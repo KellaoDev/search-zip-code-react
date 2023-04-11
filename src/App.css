@@ -1,38 +1,109 @@
-.App {
-  text-align: center;
+@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@300&display=swap');
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Kanit', sans-serif, Arial, Helvetica;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.container {
+    height: 100vh;
+    display: flex; 
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background: linear-gradient(#121212, #212b46);
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+h1 {
+    font-size: 80px;
+    color: white;
+    animation: flipTitle 2.6s;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.containerInput {
+    background-color: rgba(255, 255, 255, 0.2);
+    padding: 15px;
+    margin: 34px 0;
+    display: flex;
+    border-radius: 8px;
+    box-shadow: 1px 3px 8px rgba(0, 0, 0, 0.5);
 }
 
-.App-link {
-  color: #61dafb;
+.containerInput input {
+    background-color: transparent;
+    border: none;
+    font-size: 20px;
+    color: #FFF;
+    outline: none;
+    right: 8px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.containerInput input::placeholder {
+    color: #F1F1F1;
+}
+
+button {
+    background-color: transparent;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: transform 0.5s;
+}
+
+button:hover {
+    transform: scale(1.2);
+}
+
+main {
+    width: 500px;
+    display: flex;
+    align-items: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: #F2F2F2;
+    border-radius: 8px;
+    padding: 20px;
+}
+
+main h3 {
+    margin: 16px 0;
+    font-size: 34px;
+}
+
+main span {
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.error {
+    border-radius: 8px;
+    padding: 20px;
+}
+
+@keyframes flipTitle {
+    from {
+        transform: rotateX(90deg);
+    }
+    to {
+transform: rotateX(0deg);
+    }
+}
+
+@media (max-width: 620px) {
+    h1 {
+        font-size: 60px;
+    }
+
+    main {
+        width: 80%;
+    }
+
+    main h3 {
+        font-size: 28px;
+        min-height: 100px;
+    }
 }
