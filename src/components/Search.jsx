@@ -4,13 +4,14 @@ import api from "../services/api";
 import './Search.css'
 
 function Search() {
-
+    
     const [input, setInput] = useState('');
     const [cep, setCep] = useState({});
 
     async function handleSearch() {
         if (input === '') {
-            alert('Preencha algum cep!')
+            let text = 'HELLO'
+            document.getElementById('error').innerHTML = text;
             return;
         }
 
@@ -52,6 +53,10 @@ function Search() {
                         <span>{cep.localidade} - {cep.uf}</span>
                     </main>
                 )}
+
+                <div id="error">
+                    <h2>{}</h2>
+                </div>
             </div>
         </>
     )
