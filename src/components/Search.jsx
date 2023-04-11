@@ -4,15 +4,21 @@ import api from "../services/api";
 import './Search.css'
 
 function Search() {
-    
+
     const [input, setInput] = useState('');
     const [cep, setCep] = useState({});
 
+    function verificarEstado() {
+        let state = null
+        document.getElementById('error').innerHTML = state
+        //corrigir
+    }
+
     async function handleSearch() {
-        if (input === '') {
-            let text = 'HELLO'
-            document.getElementById('error').innerHTML = text;
-            return;
+        if (input === '')  {
+            let warning = `Campo Inválido`;
+            document.getElementById('error').innerHTML = warning;
+            return; 
         }
 
         try {
@@ -21,8 +27,9 @@ function Search() {
             setInput('');
 
         } catch {
-            alert('ERRO, possivelmente esse cep não existe!');
-            setInput('');
+            let warning = `CEP inválido`;
+            document.getElementById('error').innerHTML = warning;
+            return;
         }
     }
 
@@ -36,6 +43,7 @@ function Search() {
                         type="text"
                         placeholder="Informe o cep"
                         value={input}
+                        onClick={verificarEstado}
                         onChange={(e) => setInput(e.target.value)}
                     />
 
@@ -53,11 +61,9 @@ function Search() {
                         <span>{cep.localidade} - {cep.uf}</span>
                     </main>
                 )}
-
-                <div id="error">
-                    <h2>{}</h2>
-                </div>
+                <div id="error"></div>
             </div>
+
         </>
     )
 }
