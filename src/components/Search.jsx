@@ -8,30 +8,35 @@ function Search() {
     const [input, setInput] = useState('');
     const [cep, setCep] = useState({});
 
-    function verificarEstado() {
-        let state = null
-        document.getElementById('error').innerHTML = state
-        //corrigir
-    }
-
     async function handleSearch() {
-        if (input === '')  {
-            let warning = `Campo Inválido`;
-            document.getElementById('error').innerHTML = warning;
-            return; 
-        }
 
         try {
             const response = await api.get(`${input}/json`);
             setCep(response.data);
-            setInput('');
+            console.log(response);
+            setInput('');;
 
         } catch {
-            let warning = `CEP inválido`;
-            document.getElementById('error').innerHTML = warning;
+            let text = 'CEP não encontrado';
+            document.getElementById('cath-error').innerHTML = text;
+            setInput('');
             return;
         }
     }
+
+    function verificarEstado() {
+        document.getElementById('cath-error').innerHTML = null
+        document.getElementsByClassName('main').innerHTML = null
+    }
+
+    /*function textInput(e) {
+        let text = '-'
+        text.substring(2, 4)
+        document.getElementsByClassName('containerInput_input').innerHTML = text
+        console.log(text)
+
+
+    }*/
 
     return (
         <>
@@ -40,10 +45,11 @@ function Search() {
 
                 <div className='containerInput'>
                     <input
+                        className="containerInput_input"
                         type="text"
                         placeholder="Informe o cep"
                         value={input}
-                        onClick={verificarEstado}
+                        onClick={textInput}
                         onChange={(e) => setInput(e.target.value)}
                     />
 
@@ -53,7 +59,7 @@ function Search() {
                 </div>
 
                 {Object.keys(cep).length > 0 && (
-                    <main>
+                    <main className='main'>
                         <h3>CEP: {cep.cep}</h3>
                         <span>{cep.logradouro}</span>
                         <span>Complemento: {cep.complemento}</span>
@@ -61,9 +67,13 @@ function Search() {
                         <span>{cep.localidade} - {cep.uf}</span>
                     </main>
                 )}
-                <div id="error"></div>
-            </div>
 
+                <div id="cath-error"></div>
+
+                {input.length > 9 && (
+                    <div id="cep-disabled">CEP inválido</div>
+                )}
+            </div>
         </>
     )
 }
