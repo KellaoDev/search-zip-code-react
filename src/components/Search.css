@@ -9,26 +9,29 @@
 
 .container {
     height: 100vh;
+    width: 100vw;
     display: flex; 
     justify-content: center;
     align-items: center;
     flex-direction: column;
     background: linear-gradient(#121212, #212b46);
+    position: absolute;
 }
 
 h1 {
     font-size: 80px;
     color: white;
     animation: flipTitle 2.6s;
+    margin-top: -100px;
 }
 
 .containerInput {
     background-color: rgba(255, 255, 255, 0.2);
     padding: 15px;
-    margin: 34px 0;
     display: flex;
     border-radius: 8px;
     box-shadow: 1px 3px 8px rgba(0, 0, 0, 0.5);
+    margin-bottom: 40px;
 }
 
 .containerInput input {
@@ -37,7 +40,6 @@ h1 {
     font-size: 20px;
     color: #FFF;
     outline: none;
-    right: 8px;
 }
 
 .containerInput input::placeholder {
@@ -64,9 +66,10 @@ main {
     align-items: center;
     align-items: center;
     flex-direction: column;
-    background-color: #F2F2F2;
+    background-color: #f2f2f2cb;
     border-radius: 8px;
     padding: 20px;
+    
 }
 
 main h3 {
@@ -77,6 +80,16 @@ main h3 {
 main span {
     font-weight: bold;
     font-size: 20px;
+}
+
+#cep-disabled {
+    font-size: 40px;
+    color: rgb(255, 0, 0, 0.5);
+}
+
+#cath-error {
+    font-size: 40px;
+    color: rgb(255, 0, 0, 0.5);
 }
 
 @keyframes flipTitle {
