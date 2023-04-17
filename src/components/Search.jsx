@@ -9,13 +9,11 @@ function Search() {
     const [cep, setCep] = useState({});
 
     async function handleSearch() {
-
         try {
             const response = await api.get(`${input}/json`);
             setCep(response.data);
             console.log(response);
-            setInput('');;
-
+            setInput('');
         } catch {
             let text = 'CEP não encontrado';
             document.getElementById('cath-error').innerHTML = text;
@@ -29,15 +27,6 @@ function Search() {
         document.getElementsByClassName('main').innerHTML = null
     }
 
-    /*function textInput(e) {
-        let text = '-'
-        text.substring(2, 4)
-        document.getElementsByClassName('containerInput_input').innerHTML = text
-        console.log(text)
-
-
-    }*/
-
     return (
         <>
             <div className='container'>
@@ -47,9 +36,10 @@ function Search() {
                     <input
                         className="containerInput_input"
                         type="text"
+                        id="cepInput"
                         placeholder="Informe o cep"
                         value={input}
-                        onClick={textInput}
+                        onClick={verificarEstado}
                         onChange={(e) => setInput(e.target.value)}
                     />
 
